@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
-import { RecipeService } from 'src/app/services/recipe.service';
+import { RecipeState} from '../store/reducers/recipe.reducer'
+import { Subject, Observable, from } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { loadRecipes } from '../store/actions/recipe.actions';
+import { takeUntil } from 'rxjs/operators';
+import { getRecipes } from '../store/selectors/recipe.selectors'
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,12 +13,13 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-  selectedRecipe!: Recipe;
-  recipes!: Recipe[];
-  constructor(private recipeService: RecipeService) { }
+  private alive = new Subject<void>();
+  recipes$!: Observable<Recipe[]>;
+  constructor(private recStore: Store<RecipeState>) { }
 
   ngOnInit(): void {
-    this.recipes = this.recipeService.getRecipe();
+    this.recStore.dispatch(loadRecipes());
+    this.recipes$ = this.recStore.pipe(takeUntil(this.alive),select(getRecipes));
   }
 
 }

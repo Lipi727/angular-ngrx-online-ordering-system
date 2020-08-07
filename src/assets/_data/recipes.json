@@ -1,0 +1,37 @@
+[
+    {
+        "id":1,
+        "name": "Stuffed Masala Mushrooms",
+        "description": "this is a simpily test",
+        "imagePath": "../assets/images/stuffed-masala-mushrooms.jpg",
+        "ingredients":[
+            {
+                "name":"Carrot",
+                 "amount":2
+            },
+            {
+                "name":"Chilli",
+                 "amount":1
+            }
+        ]
+      
+    },
+    {    
+        "id":2,
+        "name": "Garlic Mushrooms In Garlic Sauce",
+        "description": "this is a simpily test",
+        "imagePath": "../assets/images/garlic-mushrooms-in-garlic-sauce.jpg",
+        "ingredients":[
+            {
+                "name":"Carrot",
+                 "amount":2
+            },
+            {
+                "name":"Buns",
+                 "amount":5
+            }
+        ]
+    }
+
+]    
+    

@@ -6,18 +6,25 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
-import { RecipeItemComponent } from './components/recipes/recipe-list/recipe-item/recipe-item.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './components/shopping-list/shopping-edit/shopping-edit.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
-import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe-detail.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatMenuModule} from '@angular/material/menu';
+
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './store/reducers';
+import { AppEffects } from './store/effects/app.effects';
+import { ShoppingListEffects } from './components/shopping-list/store/effects/shopping-list.effects';
+import { RecipesModule } from './components/recipes/recipes.module';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -26,21 +33,29 @@ import {MatMenuModule} from '@angular/material/menu';
     HomeComponent,
     HeaderComponent,
     DropdownDirective,
-    RecipeListComponent,
-    RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    RecipesComponent,
-    RecipeDetailComponent,
+    RecipesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCardModule,
+    
     MatGridListModule,
-    MatMenuModule
+    HttpClientModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forFeature([ShoppingListEffects]),
+    StoreModule.forRoot(reducers, {
+      metaReducers, 
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([AppEffects]),
+    RecipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

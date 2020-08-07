@@ -1,4 +1,4 @@
-<a style="cursor: pointer;" (click)="onSelectRecipe()">
+<div style="cursor: pointer;" [routerLink]="recipe.id" routerLinkActive="active">
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ recipe.name }}</mat-card-title>
@@ -15,4 +15,4 @@
       />
     </mat-card-content>
   </mat-card>
-</a>
+</div>

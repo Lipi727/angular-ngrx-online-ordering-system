@@ -1,25 +1,19 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 import { Recipe } from '../models/recipe.model';
+// import { Recipes } from '../_data/recipes.json';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   selectedRecipe = new EventEmitter<Recipe>();
-  private  recipes: Recipe[] =[
-    new Recipe(
-        'Stuffed Masala Mushrooms',
-        'this is a simpily test','../assets/images/stuffed-masala-mushrooms.jpg'),
-
-    new Recipe(
-        'Garlic Mushrooms In Garlic Sauce',
-        'this is a simpily test','../assets/images/garlic-mushrooms-in-garlic-sauce.jpg')
-       
-  ];
-  constructor() { }
+  
+  constructor(private http: HttpClient) { }
 
   getRecipe(){
-    return this.recipes;
+    return this.http.get('../../assets/_data/recipes.json');
   }
 }

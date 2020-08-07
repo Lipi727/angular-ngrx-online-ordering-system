@@ -135,6 +135,7 @@
   },
   "defaultProject": "angular-ngrx-online-ordering-system",
   "cli": {
+    "defaultCollection": "@ngrx/schematics",
     "analytics": false
   }
 }

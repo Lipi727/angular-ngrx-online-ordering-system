@@ -1,10 +1,11 @@
 <div class="row">
     <div class="col-xs-12">
-        <button mat-raised-button color="primary">New Recipe</button>
+        <button mat-raised-button color="primary" routerLink="new">New Recipe</button>
     </div>
 </div>
+<hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-recipe-item *ngFor="let recipeEl of recipes" [recipe]="recipeEl"></app-recipe-item>
+        <app-recipe-item *ngFor="let recipeEl of recipes$ | async" [recipe]="recipeEl"></app-recipe-item>
     </div>
 </div>
