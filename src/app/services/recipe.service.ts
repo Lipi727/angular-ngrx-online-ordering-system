@@ -1,9 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Recipe } from '../models/recipe.model';
-// import { Recipes } from '../_data/recipes.json';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
