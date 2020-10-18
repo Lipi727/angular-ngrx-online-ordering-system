@@ -1,1 +1,22 @@
-<p>shopping-edit works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="addIngredientForm">
+            <div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" min="1" formControlName="amount"> 
+                  </mat-form-field>
+            </div>
+            <div>
+                <button mat-raised-button type="button" color="primary" (click)="addIngredient()">Add</button>
+                <button mat-raised-button  type="button" color="warn">Delete</button>
+                <button mat-raised-button  type="button" color="accent">Cancel</button>
+            </div>
+            
+        </form>
+    </div>
+</div>

@@ -1,1 +1,12 @@
-<p>shopping-list works!</p>
+<div class="row">
+    <div class="col-md-6">
+      <app-shopping-edit></app-shopping-edit>
+      <hr>
+        <ul class="list-group" *ngFor="let ingredient of ingredients$ | async">
+          <li class="list-group-item d-flex justify-content-between align-items-center">{{ingredient.name}}
+            <span class="badge badge-primary badge-pill">{{ingredient.amount}}</span>
+          </li>
+
+        </ul>
+    </div>
+</div>

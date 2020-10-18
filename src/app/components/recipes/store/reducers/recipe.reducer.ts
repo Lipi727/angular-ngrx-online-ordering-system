@@ -1,8 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity'
+
 import * as RecipeActions from '../actions/recipe.actions';
 import * as fromRoot from 'src/app/store/reducers'
 import { Recipe } from 'src/app/models/recipe.model';
-import { EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity'
+
 
 export const recipeFeatureKey = 'recipe';
 

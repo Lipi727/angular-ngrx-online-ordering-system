@@ -1,15 +1,24 @@
 import { createAction, props } from '@ngrx/store';
+import { Ingredient } from 'src/app/models/ingredient.model';
 
-export const loadShoppingLists = createAction(
-  '[ShoppingList] Load ShoppingLists'
+export const loadIngredient = createAction(
+  '[Ingredient] Load Ingredients'
 );
-
-export const loadShoppingListsSuccess = createAction(
-  '[ShoppingList] Load ShoppingLists Success',
-  props<{ data: any }>()
+export const loadIngredientSuccess = createAction(
+  '[Ingredient] Load Ingredients Success',
+  props<{ ingredients: Ingredient[] }>()
 );
-
-export const loadShoppingListsFailure = createAction(
-  '[ShoppingList] Load ShoppingLists Failure',
+export const loadIngredientFailure = createAction(
+  '[Ingredient] Load Ingredients Failure',
   props<{ error: any }>()
+);
+
+export const addIngredient = createAction(
+  '[Ingredient] Add Ingredient', props<{ insertIngredient: Ingredient}>()
+);
+export const addIngredientSuccess = createAction(
+  '[Ingredient] Add Ingredient Success', props<{ ingredients: Ingredient[] }>()
+);
+export const addIngredientFailure = createAction(
+  '[Ingredient] Add Ingredient Failure', props<{ error: any }>()
 );
