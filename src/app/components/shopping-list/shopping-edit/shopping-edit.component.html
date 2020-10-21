@@ -1,22 +1,44 @@
 <div class="row">
-    <div class="col-xs-12">
-        <form [formGroup]="addIngredientForm">
-            <div>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Name</mat-label>
-                    <input matInput type="text" formControlName="name">
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Amount</mat-label>
-                    <input matInput type="number" min="1" formControlName="amount"> 
-                  </mat-form-field>
-            </div>
-            <div>
-                <button mat-raised-button type="button" color="primary" (click)="addIngredient()">Add</button>
-                <button mat-raised-button  type="button" color="warn">Delete</button>
-                <button mat-raised-button  type="button" color="accent">Cancel</button>
-            </div>
-            
-        </form>
-    </div>
+  <div class="col-xs-12">
+    <form [formGroup]="addIngredientForm" (ngSubmit)="addIngredient()">
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" minlength="2" required pattern="^[A-Za-z]*"/>
+          <mat-error *ngIf="addIngredientForm.controls.name.errors">
+            <div *ngIf="addIngredientForm.controls.name.errors?.required">Name is required</div>
+            <div *ngIf="addIngredientForm.controls.name.errors?.minlength">Name must be at least 2 characters long</div>
+            <div *ngIf="addIngredientForm.controls.name.errors?.pattern">Name must be in character only</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Amount</mat-label>
+          <input
+            matInput
+            type="number"
+            min="1"
+            formControlName="amount"
+            required
+            pattern="^[1-9]+[0-9]*$"
+          />
+          <mat-error *ngIf="addIngredientForm.controls.amount.errors">
+            <div *ngIf="addIngredientForm.controls.amount.errors?.required">Amount is required</div>
+            <div *ngIf="addIngredientForm.controls.amount.errors?.pattern">Please, enter vaild amount</div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          [disabled]="!addIngredientForm.valid"
+        >
+          Add
+        </button>
+        <button mat-raised-button type="button" color="warn">Delete</button>
+        <button mat-raised-button type="button" color="accent">Cancel</button>
+      </div>
+    </form>
+  </div>
 </div>

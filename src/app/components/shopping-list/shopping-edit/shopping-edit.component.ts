@@ -28,10 +28,10 @@ export class ShoppingEditComponent implements OnInit {
       id: this.id,
       name: this.addIngredientForm.get('name')?.value,
       amount: this.addIngredientForm.get('amount')?.value
-     
+
     }
-    console.log(insertIngredient);
    this.shoppingStore.dispatch(addIngredient({insertIngredient}));
+   console.log(this.addIngredientForm);
   }
   constructor(private _fb: FormBuilder, private shoppingStore: Store<ShoppingState>) { }
 }
