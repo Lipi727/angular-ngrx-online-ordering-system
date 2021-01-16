@@ -14,14 +14,16 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class RecipeDetailComponent implements OnInit {
   private alive = new Subject<void>();
-  recipe$ !: Observable<any>;
+  recipe$ !: any;
   id!:any;
   constructor(private route: ActivatedRoute, private recStore: Store<RecipeState>, private router: Router) { }
   
   ngOnInit(): void {
     this.route.params.subscribe((params: Params)=>{
       this.id =+params['id'];
-      this.recipe$= this.recStore.pipe(takeUntil(this.alive), select(getSelectedRecipe(this.id)));
+      this.recStore.pipe(takeUntil(this.alive), select(getSelectedRecipe(this.id))).subscribe(
+        res => this.recipe$ = res
+      );
     });   
 
 }

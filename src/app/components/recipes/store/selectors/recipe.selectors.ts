@@ -16,7 +16,7 @@ export const {
 export const getRecipes = selectAll;
 export const getSelectEntities = selectEntities;
 export const getSelectedRecipe = (id:string) =>
-      createSelector(getRecipes, all=> all ? all.filter((rec: Recipe)=> rec.id === id) : null);
+      createSelector(getRecipes, all=> all ? all.find((rec: Recipe)=> rec.id === id) : null);
       
 
        

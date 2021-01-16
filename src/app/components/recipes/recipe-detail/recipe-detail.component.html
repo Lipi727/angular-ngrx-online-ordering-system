@@ -1,42 +1,47 @@
-<div *ngFor="let recipe of recipe$ | async">
-  <div class="row">
-      <div class="col-xs-12">
-          <img  alt="" class="img-responsive"
-          [src]="recipe.imagePath"
-          height="300px;">
-      </div>
-  </div>
-  <div class="row">
-      <div class="col-xs-12">
-          <h1>{{recipe.name}}</h1>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
-        Manage Recipe<span class="caret"></span>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>To Shopping List</button>
-        <button mat-menu-item (click)="onEditRecipe()">Edit Recipe</button>
-        <button mat-menu-item>Delete Recipe</button>
-      </mat-menu>
-    </div>
-  </div>
-  <div class="row">
-      <div class="col-xs-12">
-          {{recipe.description}}
-      </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-12">
-         <ul class="list-group">
-             <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor=" let ingredient of recipe.ingredients">
-                {{ ingredient.name}}
-                <span class="badge badge-primary badge-pill">{{ingredient.amount}}</span>
-             </li>
-         </ul>
-      </div>
+<div class="row">
+  <div class="col-xs-12">
+    <img
+      alt=""
+      class="img-responsive"
+      [src]="recipe$.imagePath"
+      height="300px;"
+    />
   </div>
 </div>
-
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ recipe$.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+      Manage Recipe<span class="caret"></span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>To Shopping List</button>
+      <button mat-menu-item (click)="onEditRecipe()">Edit Recipe</button>
+      <button mat-menu-item>Delete Recipe</button>
+    </mat-menu>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{ recipe$.description }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let ingredient of recipe$.ingredients"
+      >
+        {{ ingredient.name }}
+        <span class="badge badge-primary badge-pill">{{
+          ingredient.amount
+        }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
