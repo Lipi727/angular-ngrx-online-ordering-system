@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _fb : FormBuilder) { }
+  editRecipeForm!: FormGroup;
 
   ngOnInit(): void {
+    this.editRecipeForm = this._fb.group({
+      resName: ['', Validators.required],
+      imgUrl: ['', Validators.required],
+      discription:['', Validators.required]
+    })
   }
 
+  editRecipe(){
+    console.log(this.editRecipeForm.value)
+  }
 }
